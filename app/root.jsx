@@ -9,6 +9,8 @@ import {
 
 import sharedStyles from "~/styles/shared.css";
 
+import MainHeader from "~/components/navigation/MainHeader";
+
 export const meta = () => ({
   charset: "utf-8",
   title: "New Remix App",
@@ -33,8 +35,8 @@ export default function App() {
       </body>
     </html>
   );
-}
+};
 
 export function links() {
-  return [{rel: 'stylesheet', href: sharedStyles}];
-}
+  return [{ rel: 'stylesheet', href: sharedStyles }];
+};

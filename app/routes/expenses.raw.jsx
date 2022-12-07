@@ -1,7 +1,4 @@
-export default function ExpensesRawDataPage() {
-    return (
-        <div>
-            <h1>Download raw data</h1>
-        </div>
-    );
+import { getExpenses } from "~/data/expenses.server";
+export async function loader(){
+    return getExpenses();
 }
