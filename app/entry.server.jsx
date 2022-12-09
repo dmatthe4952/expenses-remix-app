@@ -75,6 +75,7 @@ function handleBrowserRequest(
   responseHeaders,
   remixContext
 ) {
+  console.log("Request made");
   return new Promise((resolve, reject) => {
     let didError = false;
 
@@ -89,7 +90,7 @@ function handleBrowserRequest(
           resolve(
             new Response(body, {
               headers: responseHeaders,
-              status: didError ? 500 : responseStatusCode,
+              status:  responseStatusCode,
             })
           );
 
@@ -101,7 +102,8 @@ function handleBrowserRequest(
         onError(error) {
           didError = true;
 
-          console.error(error);
+          console.error("onError", error);
+
         },
       }
     );

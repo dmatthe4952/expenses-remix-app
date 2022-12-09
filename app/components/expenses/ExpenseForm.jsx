@@ -10,6 +10,10 @@ function ExpenseForm() {
   const expenses = matches.find(match => match.id === 'routes/__app/expenses').data;
   const expenseData = expenses.find(expense => expense.id === params.id);
 
+  if (params.id && !expenseData) {
+    return <p>Invalid expense id.</p>
+  }
+
   const defaultValues = expenseData ? {
     title: expenseData.title,
     amount: expenseData.amount,
@@ -32,7 +36,7 @@ function ExpenseForm() {
 
   return (
     <Form
-     method="post" 
+     method={expenseData ? "patch" : "post"} 
      className="form" 
      id="expense-form"
      //onSubmit={submitHandler}
