@@ -75,7 +75,6 @@ function handleBrowserRequest(
   responseHeaders,
   remixContext
 ) {
-  console.log("Request made");
   return new Promise((resolve, reject) => {
     let didError = false;
 
