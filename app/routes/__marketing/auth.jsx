@@ -23,10 +23,8 @@ export async function action({request}) {
 
     try {
         if (authMode === 'login') {
-            console.log("Log him in");
             return await login(credentials);
         } else {
-            console.log("Sign him up");
             return await signup(credentials);
 
         }
@@ -40,4 +38,10 @@ export async function action({request}) {
 
 export function links() {
     return [{rel: "stylesheet", href: authStyles}];
+}
+
+export function meta() {
+    return {
+        title: "RemixExpenses - Signin",
+    }
 }

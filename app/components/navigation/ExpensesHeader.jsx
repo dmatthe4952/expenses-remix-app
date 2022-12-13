@@ -2,10 +2,6 @@ import { NavLink, Form} from '@remix-run/react';
 
 import Logo from '../util/Logo';
 
-function logout() {
-    console.log("Go to home");
-}
-
 function ExpensesHeader() {
   return (
     <header id="main-header">

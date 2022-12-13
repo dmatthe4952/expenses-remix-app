@@ -23,7 +23,6 @@ export async function action({ request }) {
     const userId = await requireUserSession(request);
     const formData = await request.formData();
     const expenseData = Object.fromEntries(formData);
-    console.log(expenseData, formData);
 
     try {
         validateExpenseInput(expenseData);

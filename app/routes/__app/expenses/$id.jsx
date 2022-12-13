@@ -38,8 +38,13 @@ export async function action({params, request}){
             await deleteExpense(expenseId);
             return { deleted: expenseId };    
         } catch (error) {
-            console.log(error);
-            throw error;
+            throw new Error("Something went wrong. Unable to delete expense.");
         }
+    }
+}
+
+export function meta() {
+    return {
+        title: "RemixExpenses - Edit",
     }
 }

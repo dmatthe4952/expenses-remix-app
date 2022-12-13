@@ -17,7 +17,6 @@ const sessionStorage = createCookieSessionStorage({
 async function createUserSession(userId, redirectPath) {
     const session = await sessionStorage.getSession();
     session.set('userId', userId);
-    console.log("Inside createUserSession");
     return redirect(redirectPath, {
         headers: {
             'Set-Cookie': await sessionStorage.commitSession(session),
@@ -41,7 +40,6 @@ export async function requireUserSession(request){
     const userId = await getUserFromSession(request);
 
     if (!userId) {
-        console.log("No user available to requireUserSession");
         throw redirect('/auth?mode=login');
     }
 
@@ -80,7 +78,6 @@ export async function login({email, password}) {
     const existingUser = await prisma.user.findFirst({where: {email}});
 
     if (!existingUser) {
-        console.log("user does not exist");
         const error = new Error("User does not exist.");
         error.status = 401;
         throw error;
@@ -89,7 +86,6 @@ export async function login({email, password}) {
     const correctPassword = await compare(password, existingUser.password);
 
     if (!correctPassword) {
-        console.log("password does not match");
         const error2 = new Error("Cannot validate user");
         error2.status = 401;
         throw error2;
