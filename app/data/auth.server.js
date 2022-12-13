@@ -39,9 +39,13 @@ export async function getUserFromSession(request){
 
 export async function requireUserSession(request){
     const userId = await getUserFromSession(request);
+
     if (!userId) {
+        console.log("No user available to requireUserSession");
         throw redirect('/auth?mode=login');
     }
+
+    return userId;
 
 }
 

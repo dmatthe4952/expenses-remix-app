@@ -1,5 +1,6 @@
 import { useLoaderData, Link, useCatch } from "@remix-run/react";
 import { getExpenses } from "~/data/expenses.server";
+import { requireUserSession } from "~/data/auth.server";
 
 import ExpenseStatistics from "~/components/expenses/ExpenseStatistics";
 import Chart from "~/components/expenses/Chart";
@@ -17,8 +18,10 @@ export default function AnalysisPage() {
     )
 }
 
-export async function loader(){
-    const expenses = await getExpenses();
+export async function loader({request}){
+    const userId = await requireUserSession(request);
+
+    const expenses = await getExpenses(userId);
     if (!expenses|| expenses.length === 0) {
         throw json(
             {message: "Could not retrieve any expenses for analysis"},
